@@ -1,14 +1,14 @@
 import { useRef, useState } from 'react';
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ onCreate }) => {
   const authorInput = useRef();
   const contentInput = useRef();
 
-  //하나의 state 객체안에 author와 content 둘다 관리함
+  //DiaryEdix의 input을 관리하는 객체
   const [state, setState] = useState({
     author: '',
     content: '',
-    emtion: 1,
+    emotion: 1,
   });
 
   const handleChangeState = e => {
@@ -31,7 +31,9 @@ const DiaryEditor = () => {
       return;
     }
 
+    onCreate(state.author, state.content, state.emtion);
     alert('저장 성공');
+    setState({ author: '', content: '', emtion: 1 });
   };
 
   return (
@@ -54,7 +56,7 @@ const DiaryEditor = () => {
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>
-          <option value={4}>4</option>
+          <option value={4}>4</option>``
           <option value={5}>5</option>
         </select>
       </div>
