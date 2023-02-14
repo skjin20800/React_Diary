@@ -31,9 +31,9 @@ const DiaryEditor = ({ onCreate }) => {
       return;
     }
 
-    onCreate(state.author, state.content, state.emtion);
+    onCreate(state.author, state.content, state.emotion);
     alert('저장 성공');
-    setState({ author: '', content: '', emtion: 1 });
+    setState({ author: '', content: '', emotion: 1 });
   };
 
   return (
@@ -52,7 +52,7 @@ const DiaryEditor = ({ onCreate }) => {
         <textarea name="content" value={state.content} ref={contentInput} onChange={handleChangeState} />
       </div>
       <div>
-        <select name="emotion" value={state.emtion} onChange={handleChangeState}>
+        <select name="emotion" value={state.emotion} onChange={handleChangeState}>
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>
