@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import './App.css';
 import DiaryEditor from './DiaryEdit';
 import DiaryList from './DiaryList';
+import OptimizeTest from './OptimizeTest';
 
 function App() {
   const [data, setData] = useState([]);
@@ -33,13 +34,11 @@ function App() {
       created_date,
       id: dataId.current,
     };
-    console.log(`${dataId} id값`);
     dataId.current += 1;
     setData([newItem, ...data]);
   };
 
   const onRemove = targetId => {
-    console.log(`${targetId}가 삭제되었습니다.`);
     const newDiaryList = data.filter(it => it.id !== targetId);
     setData(newDiaryList);
   };
@@ -49,11 +48,6 @@ function App() {
   };
 
   const getDiaryAnalysis = useMemo(() => {
-    if (data.length === 0) {
-      return { goodcount: 0, badCount: 0, goodRatio: 0 };
-    }
-    console.log(`일기 분석 시작 ${data.length}`);
-
     const goodCount = data.filter(it => it.emotion >= 3).length;
     const badCount = data.length - goodCount;
     const goodRatio = (goodCount / data.length) * 100;
@@ -64,6 +58,7 @@ function App() {
 
   return (
     <div className="App">
+      <OptimizeTest />
       <DiaryEditor onCreate={onCreate} />
       <div>전체 일기 : {data.length}</div>
       <div>기분 좋은 일기 개수 : {goodCount}</div>
